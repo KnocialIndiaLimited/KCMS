@@ -236,8 +236,8 @@ var login = function login(req, res) {
                 //   var hor=Math.floor(total/60);
                 //   console.log(min,hor)
                 // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
-
-                console.log('LoginTime', loginTime, ' ,NotLogin:-', NotLogin, ' curent time', TS); // if(loginTime<TS && NotLogin>TS){
+                // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
+                // if(loginTime<TS && NotLogin>TS){
                 //     let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
                 //     let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
                 //     res.json({
