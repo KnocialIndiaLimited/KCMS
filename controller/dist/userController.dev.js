@@ -194,18 +194,27 @@ var login = function login(req, res) {
                   refreshToken: refreshToken
                 });
               } else {
-                // var shift=User.shift[0].shift_start;
-                //  shift=shift.split(':');
-                // const hours=shift[0];
-                // const minutes=shift[1];
-                // const TotalSeconds=(hours*3600)+(minutes*60);
-                // const loginTime=TotalSeconds-(15*60);
-                // const NotLogin=TotalSeconds+(9*3600);
-                var currentTime = new Date(); // const h=currentTime.getHours();
-                // const m=currentTime.getMinutes();
-                // const TS=(h*3600)+(m*60);
-
+                var shift = User.shift[0].shift_start;
+                shift = shift.split(':');
+                var hours = shift[0];
+                var minutes = shift[1];
+                var TotalSeconds = hours * 3600 + minutes * 60;
+                var loginTime = TotalSeconds - 15 * 60;
+                var NotLogin = TotalSeconds + 9 * 3600;
+                var currentTime = new Date();
                 var TimeA = currentTime.toLocaleTimeString();
+                var h = currentTime.getHours();
+                var m = currentTime.getMinutes();
+                var TS = h * 3600 + m * 60; //    var getTime=TS/60;
+                //    getTime=getTime%60;
+                //    console.log('minutes',getTime);
+                //   var total=loginTime/60
+                //   var min=total%60;
+                //   var hor=Math.floor(total/60);
+                //   console.log(min,hor)
+                // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
+
+                console.log('LoginTime', loginTime, ' ,NotLogin:-', NotLogin, ' curent time', TS);
 
                 var _token = jwt.sign({
                   email: User.email,
@@ -228,16 +237,7 @@ var login = function login(req, res) {
                   token: _token,
                   refreshToken: _refreshToken
                 });
-                addLoginStatus(User.rpt_id, User.username, datezone.datezone, TimeA, ipAddress); //    var getTime=TS/60;
-                //    getTime=getTime%60;
-                //    console.log('minutes',getTime);
-                //   var total=loginTime/60
-                //   var min=total%60;
-                //   var hor=Math.floor(total/60);
-                //   console.log(min,hor)
-                // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
-                // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
-                // if(loginTime<TS && NotLogin>TS){
+                addLoginStatus(User.rpt_id, User.username, datezone, TimeA, ipAddress); // if(loginTime<TS && NotLogin>TS){
                 //     let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
                 //     let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
                 //     res.json({
@@ -245,7 +245,7 @@ var login = function login(req, res) {
                 //         token,
                 //         refreshToken
                 //     })
-                //      addLoginStatus(User.rpt_id,User.username,datezone.datezone,TimeA,ipAddress);
+                //      addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
                 // }
                 // else{
                 //     res.json({

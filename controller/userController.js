@@ -161,30 +161,20 @@ const login =(req,res)=>{
                         })
                     }
                     else{
-                        // var shift=User.shift[0].shift_start;
-                        //  shift=shift.split(':');
-                        // const hours=shift[0];
-                        // const minutes=shift[1];
-                        // const TotalSeconds=(hours*3600)+(minutes*60);
-                        // const loginTime=TotalSeconds-(15*60);
-                        // const NotLogin=TotalSeconds+(9*3600);
+                        var shift=User.shift[0].shift_start;
+                         shift=shift.split(':');
+                        const hours=shift[0];
+                        const minutes=shift[1];
+                        const TotalSeconds=(hours*3600)+(minutes*60);
+                        const loginTime=TotalSeconds-(15*60);
+                        const NotLogin=TotalSeconds+(9*3600);
                 
                         const currentTime=new Date();
-                        // const h=currentTime.getHours();
-                        // const m=currentTime.getMinutes();
-                        // const TS=(h*3600)+(m*60);
                         const TimeA=currentTime.toLocaleTimeString();
-
-                        let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
-                        let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
-                        res.json({
-                            message:'login Successfully',
-                            token,
-                            refreshToken
-                        })
-
-                         addLoginStatus(User.rpt_id,User.username,datezone.datezone,TimeA,ipAddress);
-
+                        const h=currentTime.getHours();
+                        const m=currentTime.getMinutes();
+                        const TS=(h*3600)+(m*60);
+                        
                 //    var getTime=TS/60;
                 //    getTime=getTime%60;
                 //    console.log('minutes',getTime);
@@ -195,7 +185,16 @@ const login =(req,res)=>{
                 //   console.log(min,hor)
                 
                         // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
-                        // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
+                        console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
+                        let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
+                        let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
+                        res.json({
+                            message:'login Successfully',
+                            token,
+                            refreshToken
+                        })
+
+                         addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
                         // if(loginTime<TS && NotLogin>TS){
                         //     let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
                         //     let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
@@ -205,7 +204,7 @@ const login =(req,res)=>{
                         //         refreshToken
                         //     })
 
-                        //      addLoginStatus(User.rpt_id,User.username,datezone.datezone,TimeA,ipAddress);
+                        //      addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
                         // }
                         // else{
                         //     res.json({
