@@ -173,6 +173,7 @@ const login =(req,res)=>{
                         const TimeA=currentTime.toLocaleTimeString();
                         const h=currentTime.getHours();
                         const m=currentTime.getMinutes();
+                        console.log(h,m)
                         const TS=(h*3600)+(m*60);
                         
                 //    var getTime=TS/60;
