@@ -205,7 +205,6 @@ var login = function login(req, res) {
                 var TimeA = currentTime.toLocaleTimeString();
                 var h = currentTime.getHours();
                 var m = currentTime.getMinutes();
-                console.log(h, m);
                 var TS = (h + 5) * 3600 + (m + 30) * 60; //    var getTime=TS/60;
                 //    getTime=getTime%60;
                 //    console.log('minutes',getTime);
@@ -213,8 +212,8 @@ var login = function login(req, res) {
                 //   var min=total%60;
                 //   var hor=Math.floor(total/60);
                 //   console.log(min,hor)
-                // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
-                // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
+
+                console.log('LoginTime', loginTime, ' ,NotLogin:-', NotLogin, ' curent time', TS); // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
                 // let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
                 // let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
                 // res.json({
