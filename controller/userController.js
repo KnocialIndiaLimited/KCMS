@@ -174,7 +174,7 @@ const login =(req,res)=>{
                         const h=currentTime.getHours();
                         const m=currentTime.getMinutes();
                         console.log(h,m)
-                        const TS=(h*3600)+(m*60);
+                        const TS=((h+5)*3600)+((m+30)*60);
                         
                 //    var getTime=TS/60;
                 //    getTime=getTime%60;
@@ -186,32 +186,32 @@ const login =(req,res)=>{
                 //   console.log(min,hor)
                 
                         // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
-                        console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
-                        let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
-                        let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
-                        res.json({
-                            message:'login Successfully',
-                            token,
-                            refreshToken
-                        })
+                        // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
+                        // let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
+                        // let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
+                        // res.json({
+                        //     message:'login Successfully',
+                        //     token,
+                        //     refreshToken
+                        // })
 
-                         addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
-                        // if(loginTime<TS && NotLogin>TS){
-                        //     let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
-                        //     let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
-                        //     res.json({
-                        //         message:'login Successfully',
-                        //         token,
-                        //         refreshToken
-                        //     })
+                        //  addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
+                        if(loginTime<TS && NotLogin>TS){
+                            let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
+                            let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
+                            res.json({
+                                message:'login Successfully',
+                                token,
+                                refreshToken
+                            })
 
-                        //      addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
-                        // }
-                        // else{
-                        //     res.json({
-                        //         message:'Shift Over'
-                        //     })
-                        // }
+                             addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
+                        }
+                        else{
+                            res.json({
+                                message:'Shift Over'
+                            })
+                        }
                     }   
                 }
                 

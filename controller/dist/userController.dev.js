@@ -206,7 +206,7 @@ var login = function login(req, res) {
                 var h = currentTime.getHours();
                 var m = currentTime.getMinutes();
                 console.log(h, m);
-                var TS = h * 3600 + m * 60; //    var getTime=TS/60;
+                var TS = (h + 5) * 3600 + (m + 30) * 60; //    var getTime=TS/60;
                 //    getTime=getTime%60;
                 //    console.log('minutes',getTime);
                 //   var total=loginTime/60
@@ -214,45 +214,44 @@ var login = function login(req, res) {
                 //   var hor=Math.floor(total/60);
                 //   console.log(min,hor)
                 // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
+                // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
+                // let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
+                // let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
+                // res.json({
+                //     message:'login Successfully',
+                //     token,
+                //     refreshToken
+                // })
+                //  addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
 
-                console.log('LoginTime', loginTime, ' ,NotLogin:-', NotLogin, ' curent time', TS);
+                if (loginTime < TS && NotLogin > TS) {
+                  var _token = jwt.sign({
+                    email: User.email,
+                    username: User.username,
+                    role: User.role,
+                    id: User._id,
+                    rpt_id: User.rpt_id
+                  }, tokenPrivacy, {
+                    expiresIn: '9h'
+                  });
 
-                var _token = jwt.sign({
-                  email: User.email,
-                  username: User.username,
-                  role: User.role,
-                  id: User._id,
-                  rpt_id: User.rpt_id
-                }, tokenPrivacy, {
-                  expiresIn: '9h'
-                });
+                  var _refreshToken = jwt.sign({
+                    email: User.email
+                  }, 'RefreshTokenverySecretValue', {
+                    expiresIn: '60s'
+                  });
 
-                var _refreshToken = jwt.sign({
-                  email: User.email
-                }, 'RefreshTokenverySecretValue', {
-                  expiresIn: '60s'
-                });
-
-                res.json({
-                  message: 'login Successfully',
-                  token: _token,
-                  refreshToken: _refreshToken
-                });
-                addLoginStatus(User.rpt_id, User.username, datezone, TimeA, ipAddress); // if(loginTime<TS && NotLogin>TS){
-                //     let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
-                //     let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
-                //     res.json({
-                //         message:'login Successfully',
-                //         token,
-                //         refreshToken
-                //     })
-                //      addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
-                // }
-                // else{
-                //     res.json({
-                //         message:'Shift Over'
-                //     })
-                // }
+                  res.json({
+                    message: 'login Successfully',
+                    token: _token,
+                    refreshToken: _refreshToken
+                  });
+                  addLoginStatus(User.rpt_id, User.username, datezone, TimeA, ipAddress);
+                } else {
+                  res.json({
+                    message: 'Shift Over'
+                  });
+                }
               }
             } else {
               res.json({
