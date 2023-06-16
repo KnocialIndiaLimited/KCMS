@@ -216,7 +216,7 @@ var login = function login(req, res) {
 
                 console.log('LoginTime', loginTime, ' ,NotLogin:-', NotLogin, ' curent time', TS);
 
-                if (loginTime < TS && NotLogin > TS) {
+                if (loginTime < TS && NotLogin < TS) {
                   var _token = jwt.sign({
                     email: User.email,
                     username: User.username,
