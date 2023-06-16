@@ -7,7 +7,6 @@ const convert = require('../Converttime');
 
 
 const addLoginStatus=(rpt_id,name,date,loginTime,ipAddress)=>{
-    console.log(rpt_id,dateZone)
     LoginStatus.findOne({rpt_id:rpt_id,date:dateZone.datezone}).then(User=>{
         // console.log(User.shift[0].shift_start)
         if(User){

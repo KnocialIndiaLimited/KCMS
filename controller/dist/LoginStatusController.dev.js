@@ -14,7 +14,6 @@ var covert = require('../Converttime');
 var convert = require('../Converttime');
 
 var addLoginStatus = function addLoginStatus(rpt_id, name, date, loginTime, ipAddress) {
-  console.log(rpt_id, dateZone);
   LoginStatus.findOne({
     rpt_id: rpt_id,
     date: dateZone.datezone

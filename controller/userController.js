@@ -170,7 +170,11 @@ const login =(req,res)=>{
                         const NotLogin=TotalSeconds+(9*3600);
                 
                         const currentTime=new Date();
-                        const TimeA=currentTime.toLocaleTimeString();
+                        var dateUTC = getcurentdate.getTime() 
+                        var dateIST = new Date(dateUTC);
+                        dateIST.setHours(dateIST.getHours() + 5); 
+                        dateIST.setMinutes(dateIST.getMinutes() + 30);
+                        const TimeA=dateIST.toLocaleTimeString();
                         const h=currentTime.getHours();
                         const m=currentTime.getMinutes();
                         const TS=((h+5)*3600)+((m+30)*60);

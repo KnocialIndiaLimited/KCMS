@@ -202,7 +202,11 @@ var login = function login(req, res) {
                 var loginTime = TotalSeconds - 15 * 60;
                 var NotLogin = TotalSeconds + 9 * 3600;
                 var currentTime = new Date();
-                var TimeA = currentTime.toLocaleTimeString();
+                var dateUTC = getcurentdate.getTime();
+                var dateIST = new Date(dateUTC);
+                dateIST.setHours(dateIST.getHours() + 5);
+                dateIST.setMinutes(dateIST.getMinutes() + 30);
+                var TimeA = dateIST.toLocaleTimeString();
                 var h = currentTime.getHours();
                 var m = currentTime.getMinutes();
                 var TS = (h + 5) * 3600 + (m + 30) * 60; //    var getTime=TS/60;
