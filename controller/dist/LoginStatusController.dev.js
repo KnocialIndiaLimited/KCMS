@@ -20,7 +20,6 @@ var addLoginStatus = function addLoginStatus(rpt_id, name, date, loginTime, ipAd
   }).then(function (User) {
     // console.log(User.shift[0].shift_start)
     if (User) {
-      console.log('user found');
       console.log(User);
     } else {
       counterSchema.findOneAndUpdate({
@@ -150,6 +149,20 @@ var getPersonalLoginStatusById = function getPersonalLoginStatusById(req, res) {
   });
 };
 
+var getTotalActiveById = function getTotalActiveById(req, res) {
+  var getId = req.params.id;
+  var array = [];
+  LoginStatus.find({
+    rpt_id: getId
+  }, function (err, docs) {
+    if (!err) {
+      res.json(docs);
+    } else {
+      res.json(err);
+    }
+  });
+};
+
 var deleteLoginStatus = function deleteLoginStatus(req, res) {
   var deleteid = req.params.id;
   LoginStatus.findByIdAndDelete(deleteid, function (err, del) {
@@ -182,7 +195,7 @@ var updateLoginStatus = function updateLoginStatus(req, res) {
     totalIdle: req.body.totalIdle
   }, function (err, docs) {
     if (!err) {
-      console.log(docs);
+      res.json(docs);
     } else {
       res.json(err);
     }
@@ -219,5 +232,6 @@ module.exports = {
   getAllLoginStatusById: getAllLoginStatusById,
   deleteLoginStatus: deleteLoginStatus,
   updateLoginStatus: updateLoginStatus,
-  getPersonalLoginStatusById: getPersonalLoginStatusById
+  getPersonalLoginStatusById: getPersonalLoginStatusById,
+  getTotalActiveById: getTotalActiveById
 };

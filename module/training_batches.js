@@ -5,7 +5,7 @@ const Batches = mongoose.model("training_batches",{
     _id:{type:Number,required:true},
     batch_name:{type:String,required:true},
     batch_location:{type:String,required:true},
-    batch_starting_date:{type:Date,required:true},
+    batch_starting_date:{type:String,required:true},
     batch_size:{type:Number,required:true},
     batch_type:{type:String,required:true},
     batch_trainer:{type:String,required:true},

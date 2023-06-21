@@ -10,7 +10,6 @@ const addLoginStatus=(rpt_id,name,date,loginTime,ipAddress)=>{
     LoginStatus.findOne({rpt_id:rpt_id,date:dateZone.datezone}).then(User=>{
         // console.log(User.shift[0].shift_start)
         if(User){
-            console.log('user found')
          console.log(User)
         }
         else{
@@ -139,6 +138,20 @@ const getPersonalLoginStatusById=(req,res)=>{
     })
 }
 
+
+const getTotalActiveById=(req,res)=>{
+    const getId=req.params.id;
+    var array=[];
+    LoginStatus.find({rpt_id:getId},(err,docs)=>{
+        if(!err){
+            res.json(docs)        
+        }
+        else{
+            res.json(err)
+        }
+    })
+}
+
 const deleteLoginStatus= (req,res)=>{
     var deleteid=req.params.id;
     LoginStatus.findByIdAndDelete(deleteid,(err,del)=>{
@@ -171,7 +184,7 @@ const updateLoginStatus=(req,res)=>{
     },
     (err,docs)=>{
         if(!err){
-            console.log(docs)
+            res.json(docs)
         }
         else{
             res.json(err)
@@ -205,4 +218,4 @@ const updateLoginStatus=(req,res)=>{
     
 //}
 
-module.exports={addLoginStatus,getAllLoginStatus,getAllLoginStatusById,deleteLoginStatus,updateLoginStatus,getPersonalLoginStatusById}
+module.exports={addLoginStatus,getAllLoginStatus,getAllLoginStatusById,deleteLoginStatus,updateLoginStatus,getPersonalLoginStatusById,getTotalActiveById}
