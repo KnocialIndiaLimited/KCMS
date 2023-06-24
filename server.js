@@ -21,7 +21,7 @@ const cors = require('cors');
 var app =express();
 app.use(bodyParser.json());
 //https://knocialindia-965e6.web.app
-app.use(cors({origin:'*'}));
+app.use(cors({origin:'http://localhost:4200'}));
 
 // const PORT =process.env.PORT || 3000;
 // app.listen(PORT,()=>console.log("server is running on 3000"))
