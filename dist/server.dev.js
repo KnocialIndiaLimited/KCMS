@@ -9,8 +9,6 @@ var _require = require('./db'),
 
 var http = require('http');
 
-var functions = require('firebase-functions');
-
 var user = require('./auth');
 
 var hrManagement = require('./Routes/trainingRoute');
@@ -37,7 +35,7 @@ var app = express();
 app.use(bodyParser.json()); //https://knocialindia-965e6.web.app
 
 app.use(cors({
-  origin: '*'
+  origin: 'http://localhost:4200'
 })); // const PORT =process.env.PORT || 3000;
 // app.listen(PORT,()=>console.log("server is running on 3000"))
 

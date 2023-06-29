@@ -2,7 +2,6 @@ const express =require('express');
 const bodyParser = require('body-parser');
 const { Mongoose} = require('./db');
 const http =require('http');
-const functions=require('firebase-functions')
 var user= require('./auth');
 var hrManagement=require('./Routes/trainingRoute');
 var setting=require('./Routes/settingRoute');
@@ -22,7 +21,7 @@ const cors = require('cors');
 var app =express();
 app.use(bodyParser.json());
 //https://knocialindia-965e6.web.app
-app.use(cors({origin:'*'}));
+app.use(cors({origin:'http://localhost:4200'}));
 
 
 // const PORT =process.env.PORT || 3000;
