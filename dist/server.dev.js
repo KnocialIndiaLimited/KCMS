@@ -9,6 +9,8 @@ var _require = require('./db'),
 
 var http = require('http');
 
+var functions = require('firebase-functions');
+
 var user = require('./auth');
 
 var hrManagement = require('./Routes/trainingRoute');

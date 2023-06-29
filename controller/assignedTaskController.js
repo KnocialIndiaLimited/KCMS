@@ -57,6 +57,8 @@ const getAllAssignedTask=(req,res)=>{
     })
 }
 
+
+
 const deleteAssignedTask=(req,res)=>{
     var deleteid=req.params.id;
     AssignedTask.findByIdAndDelete(deleteid,(err,msg)=>{

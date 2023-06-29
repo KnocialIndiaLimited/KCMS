@@ -265,6 +265,9 @@ const getAllUser = (req,res)=>{
 }
 
 
+
+
+
 // const forget_password = async(req,res)=>{
 //     try{
 //         // console.log(socket.dnsserver());

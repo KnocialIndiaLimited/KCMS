@@ -2,6 +2,7 @@ const express =require('express');
 const bodyParser = require('body-parser');
 const { Mongoose} = require('./db');
 const http =require('http');
+const functions=require('firebase-functions')
 var user= require('./auth');
 var hrManagement=require('./Routes/trainingRoute');
 var setting=require('./Routes/settingRoute');
@@ -22,6 +23,7 @@ var app =express();
 app.use(bodyParser.json());
 //https://knocialindia-965e6.web.app
 app.use(cors({origin:'*'}));
+
 
 // const PORT =process.env.PORT || 3000;
 // app.listen(PORT,()=>console.log("server is running on 3000"))
