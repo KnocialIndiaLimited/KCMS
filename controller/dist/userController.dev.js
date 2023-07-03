@@ -214,7 +214,7 @@ var login = function login(req, res) {
                 var TimeA = dateIST.toLocaleTimeString();
                 var h = currentTime.getHours();
                 var m = currentTime.getMinutes();
-                var TS = h * 3600 + m * 60; //    var getTime=TS/60;
+                var TS = (h + 5) * 3600 + (m + 30) * 60; //    var getTime=TS/60;
                 //    getTime=getTime%60;
                 //    console.log('minutes',getTime);
                 //   var total=loginTime/60
