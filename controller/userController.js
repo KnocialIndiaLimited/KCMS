@@ -175,12 +175,12 @@ const login =(req,res)=>{
                         const currentTime=new Date();
                         var dateUTC = currentTime.getTime() 
                         var dateIST = new Date(dateUTC);
-                        dateIST.setHours(dateIST.getHours()); 
-                        dateIST.setMinutes(dateIST.getMinutes());
+                        dateIST.setHours(dateIST.getHours()+5); 
+                        dateIST.setMinutes(dateIST.getMinutes()+30);
                         const TimeA=dateIST.toLocaleTimeString();
                         const h=currentTime.getHours();
                         const m=currentTime.getMinutes();
-                        const TS=((h)*3600)+((m)*60);
+                        const TS=((h+5)*3600)+((m+30)*60);
                         
                 //    var getTime=TS/60;
                 //    getTime=getTime%60;
