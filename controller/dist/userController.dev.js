@@ -209,12 +209,12 @@ var login = function login(req, res) {
                 var currentTime = new Date();
                 var dateUTC = currentTime.getTime();
                 var dateIST = new Date(dateUTC);
-                dateIST.setHours(dateIST.getHours() + 5);
-                dateIST.setMinutes(dateIST.getMinutes() + 30);
+                dateIST.setHours(dateIST.getHours());
+                dateIST.setMinutes(dateIST.getMinutes());
                 var TimeA = dateIST.toLocaleTimeString();
                 var h = currentTime.getHours();
                 var m = currentTime.getMinutes();
-                var TS = (h + 5) * 3600 + (m + 30) * 60; //    var getTime=TS/60;
+                var TS = h * 3600 + m * 60; //    var getTime=TS/60;
                 //    getTime=getTime%60;
                 //    console.log('minutes',getTime);
                 //   var total=loginTime/60
