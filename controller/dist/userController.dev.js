@@ -29,7 +29,9 @@ var _require6 = require('../dateZone'),
 var _require7 = require('../module/LoginStatus'),
     LoginStatus = _require7.LoginStatus;
 
-var convert = require('../Converttime'); // const { user } = require('../auth');
+var convert = require('../Converttime');
+
+var clockCheck = require('../clockCheck'); // const { user } = require('../auth');
 // const nodemailer= require('nodemailer');
 // const randomstring =require('randomstring');
 // const config =require('../config/config');
@@ -214,7 +216,8 @@ var login = function login(req, res) {
                 var TimeA = dateIST.toLocaleTimeString();
                 var h = currentTime.getHours();
                 var m = currentTime.getMinutes();
-                var TS = (h + 5) * 3600 + (m + 30) * 60; //    var getTime=TS/60;
+                var TS = (h + 5) * 3600 + (m + 30) * 60;
+                TS = clockCheck(TS); //    var getTime=TS/60;
                 //    getTime=getTime%60;
                 //    console.log('minutes',getTime);
                 //   var total=loginTime/60

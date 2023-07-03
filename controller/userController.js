@@ -10,6 +10,7 @@ const { addLoginStatus } = require('./LoginStatusController');
 const { datezone } = require('../dateZone');
 var {LoginStatus}=require('../module/LoginStatus');
 const convert = require('../Converttime');
+const clockCheck = require('../clockCheck');
 // const { user } = require('../auth');
 // const nodemailer= require('nodemailer');
 // const randomstring =require('randomstring');
@@ -180,8 +181,8 @@ const login =(req,res)=>{
                         const TimeA=dateIST.toLocaleTimeString();
                         const h=currentTime.getHours();
                         const m=currentTime.getMinutes();
-                        const TS=((h+5)*3600)+((m+30)*60);
-                        
+                        var TS=((h+5)*3600)+((m+30)*60);
+                        TS=clockCheck(TS);
                 //    var getTime=TS/60;
                 //    getTime=getTime%60;
                 //    console.log('minutes',getTime);
