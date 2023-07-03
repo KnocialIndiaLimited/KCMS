@@ -204,17 +204,17 @@ var login = function login(req, res) {
                 var hours = shift[0];
                 var minutes = shift[1];
                 var TotalSeconds = hours * 3600 + minutes * 60;
-                var loginTime = TotalSeconds - 15 * 60;
+                var loginTime = TotalSeconds;
                 var NotLogin = TotalSeconds + 9 * 3600;
                 var currentTime = new Date();
                 var dateUTC = currentTime.getTime();
                 var dateIST = new Date(dateUTC);
-                dateIST.setHours(dateIST.getHours() + 5);
-                dateIST.setMinutes(dateIST.getMinutes() + 30);
+                dateIST.setHours(dateIST.getHours());
+                dateIST.setMinutes(dateIST.getMinutes());
                 var TimeA = dateIST.toLocaleTimeString();
                 var h = currentTime.getHours();
                 var m = currentTime.getMinutes();
-                var TS = (h + 5) * 3600 + (m + 30) * 60; //    var getTime=TS/60;
+                var TS = h * 3600 + m * 60; //    var getTime=TS/60;
                 //    getTime=getTime%60;
                 //    console.log('minutes',getTime);
                 //   var total=loginTime/60
@@ -233,56 +233,56 @@ var login = function login(req, res) {
                 //  addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
 
                 if (loginTime < TS && NotLogin > TS) {
-                  var getPersonal = function getPersonal(req, res) {
-                    var getId = User.rpt_id;
-                    console.log(getId);
-                    LoginStatus.find({
-                      rpt_id: getId
-                    }, function (err, docs) {
-                      if (!err) {
-                        docs.find(function (x) {
-                          if (x.date == datezone) {
-                            if (x.logout) {
-                              console.log('wait for shift');
-                            } else {
-                              addLoginStatus(User.rpt_id, User.username, datezone, TimeA, ipAddress);
+                  addLoginStatus(User.rpt_id, User.username, datezone, TimeA, ipAddress);
 
-                              var _token = jwt.sign({
-                                email: User.email,
-                                username: User.username,
-                                role: User.role,
-                                id: User._id,
-                                rpt_id: User.rpt_id
-                              }, tokenPrivacy, {
-                                expiresIn: '9h'
-                              });
-
-                              var _refreshToken = jwt.sign({
-                                email: User.email
-                              }, 'RefreshTokenverySecretValue', {
-                                expiresIn: '60s'
-                              });
-
-                              res.json({
-                                message: 'login Successfully',
-                                token: _token,
-                                refreshToken: _refreshToken
-                              });
-                            }
-                          }
-                        });
-                      } else {
-                        res.json(err);
-                      }
-                    });
-                  };
-
-                  return getPersonal();
-                } else {
-                  res.json({
-                    message: 'Shift Over'
+                  var _token = jwt.sign({
+                    email: User.email,
+                    username: User.username,
+                    role: User.role,
+                    id: User._id,
+                    rpt_id: User.rpt_id
+                  }, tokenPrivacy, {
+                    expiresIn: '9h'
                   });
-                }
+
+                  var _refreshToken = jwt.sign({
+                    email: User.email
+                  }, 'RefreshTokenverySecretValue', {
+                    expiresIn: '60s'
+                  });
+
+                  res.json({
+                    message: 'login Successfully',
+                    token: _token,
+                    refreshToken: _refreshToken
+                  });
+                } // const getPersonal=(req,res)=>{
+                //     const getId=User.rpt_id;
+                //     console.log(getId)
+                //     LoginStatus.find({rpt_id:getId},(err,docs)=>{
+                //         if(!err){
+                //         docs.find(x=>{
+                //                 if(x.date==datezone){
+                //                    if(x.logout){
+                //                     console.log('wait for shift')
+                //                    }
+                //    else{
+                //    }
+                //         }
+                //     })
+                // }
+                //     else{
+                //         res.json(err)
+                //     }
+                // })
+                // }
+                // return getPersonal()
+                // }
+                else {
+                    res.json({
+                      message: 'Shift Over'
+                    });
+                  }
               }
             } else {
               res.json({

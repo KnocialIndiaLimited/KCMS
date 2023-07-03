@@ -19,7 +19,7 @@ var addLoginStatus = function addLoginStatus(rpt_id, name, date, loginTime, ipAd
     date: dateZone.datezone
   }).then(function (User) {
     // console.log(User.shift[0].shift_start)
-    if (User.logout) {// getData('next shift')
+    if (User) {// getData('next shift')
     } else {
       counterSchema.findOneAndUpdate({
         id: "loginStatus_seq"

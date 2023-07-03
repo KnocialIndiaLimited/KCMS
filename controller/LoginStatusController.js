@@ -8,7 +8,7 @@ var data1;
 const addLoginStatus=(rpt_id,name,date,loginTime,ipAddress)=>{
 LoginStatus.findOne({rpt_id:rpt_id,date:dateZone.datezone}).then(User=>{
         // console.log(User.shift[0].shift_start)
-        if(User.logout){
+        if(User){
         // getData('next shift')
         }
         else{
