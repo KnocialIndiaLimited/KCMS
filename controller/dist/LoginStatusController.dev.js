@@ -9,9 +9,9 @@ var dateZone = require('../dateZone');
 
 var moment = require('moment');
 
-var covert = require('../Converttime');
-
 var convert = require('../Converttime');
+
+var data1;
 
 var addLoginStatus = function addLoginStatus(rpt_id, name, date, loginTime, ipAddress) {
   LoginStatus.findOne({
@@ -19,8 +19,7 @@ var addLoginStatus = function addLoginStatus(rpt_id, name, date, loginTime, ipAd
     date: dateZone.datezone
   }).then(function (User) {
     // console.log(User.shift[0].shift_start)
-    if (User) {
-      console.log(User);
+    if (User.logout) {// getData('next shift')
     } else {
       counterSchema.findOneAndUpdate({
         id: "loginStatus_seq"

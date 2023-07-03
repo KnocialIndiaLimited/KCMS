@@ -24,7 +24,12 @@ var _require5 = require('./LoginStatusController'),
     addLoginStatus = _require5.addLoginStatus;
 
 var _require6 = require('../dateZone'),
-    datezone = _require6.datezone; // const { user } = require('../auth');
+    datezone = _require6.datezone;
+
+var _require7 = require('../module/LoginStatus'),
+    LoginStatus = _require7.LoginStatus;
+
+var convert = require('../Converttime'); // const { user } = require('../auth');
 // const nodemailer= require('nodemailer');
 // const randomstring =require('randomstring');
 // const config =require('../config/config');
@@ -228,28 +233,51 @@ var login = function login(req, res) {
                 //  addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
 
                 if (loginTime < TS && NotLogin > TS) {
-                  var _token = jwt.sign({
-                    email: User.email,
-                    username: User.username,
-                    role: User.role,
-                    id: User._id,
-                    rpt_id: User.rpt_id
-                  }, tokenPrivacy, {
-                    expiresIn: '9h'
-                  });
+                  var getPersonal = function getPersonal(req, res) {
+                    var getId = User.rpt_id;
+                    console.log(getId);
+                    LoginStatus.find({
+                      rpt_id: getId
+                    }, function (err, docs) {
+                      if (!err) {
+                        docs.find(function (x) {
+                          if (x.date == datezone) {
+                            if (x.logout) {
+                              console.log('wait for shift');
+                            } else {
+                              addLoginStatus(User.rpt_id, User.username, datezone, TimeA, ipAddress);
 
-                  var _refreshToken = jwt.sign({
-                    email: User.email
-                  }, 'RefreshTokenverySecretValue', {
-                    expiresIn: '60s'
-                  });
+                              var _token = jwt.sign({
+                                email: User.email,
+                                username: User.username,
+                                role: User.role,
+                                id: User._id,
+                                rpt_id: User.rpt_id
+                              }, tokenPrivacy, {
+                                expiresIn: '9h'
+                              });
 
-                  res.json({
-                    message: 'login Successfully',
-                    token: _token,
-                    refreshToken: _refreshToken
-                  });
-                  addLoginStatus(User.rpt_id, User.username, datezone, TimeA, ipAddress);
+                              var _refreshToken = jwt.sign({
+                                email: User.email
+                              }, 'RefreshTokenverySecretValue', {
+                                expiresIn: '60s'
+                              });
+
+                              res.json({
+                                message: 'login Successfully',
+                                token: _token,
+                                refreshToken: _refreshToken
+                              });
+                            }
+                          }
+                        });
+                      } else {
+                        res.json(err);
+                      }
+                    });
+                  };
+
+                  return getPersonal();
                 } else {
                   res.json({
                     message: 'Shift Over'

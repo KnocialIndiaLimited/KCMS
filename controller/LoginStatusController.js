@@ -2,15 +2,14 @@ var {LoginStatus}=require('../module/LoginStatus');
 const counterSchema=require('../module/counter');
 const dateZone=require('../dateZone');
 const moment = require('moment');
-const covert=require('../Converttime');
 const convert = require('../Converttime');
 
-
+var data1;
 const addLoginStatus=(rpt_id,name,date,loginTime,ipAddress)=>{
-    LoginStatus.findOne({rpt_id:rpt_id,date:dateZone.datezone}).then(User=>{
+LoginStatus.findOne({rpt_id:rpt_id,date:dateZone.datezone}).then(User=>{
         // console.log(User.shift[0].shift_start)
-        if(User){
-         console.log(User)
+        if(User.logout){
+        // getData('next shift')
         }
         else{
             counterSchema.findOneAndUpdate(
@@ -45,9 +44,9 @@ const addLoginStatus=(rpt_id,name,date,loginTime,ipAddress)=>{
                     });
                 }
             )  
-              }
-    
+              }       
     })
+
 }
 
 const getAllLoginStatus=(req,res)=>{

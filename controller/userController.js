@@ -8,6 +8,8 @@ const { body } = require('express-validator');
 const { getCurrentTime } = require('../getCurrentTime');
 const { addLoginStatus } = require('./LoginStatusController');
 const { datezone } = require('../dateZone');
+var {LoginStatus}=require('../module/LoginStatus');
+const convert = require('../Converttime');
 // const { user } = require('../auth');
 // const nodemailer= require('nodemailer');
 // const randomstring =require('randomstring');
@@ -161,6 +163,7 @@ const login =(req,res)=>{
                         })
                     }
                     else{
+
                         var shift=User.shift[0].shift_start;
                          shift=shift.split(':');
                         const hours=shift[0];
@@ -200,15 +203,40 @@ const login =(req,res)=>{
 
                         //  addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
                         if(loginTime<TS && NotLogin>TS){
-                            let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
-                            let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
-                            res.json({
-                                message:'login Successfully',
-                                token,
-                                refreshToken
-                            })
+                           
+                            const getPersonal=(req,res)=>{
+                                const getId=User.rpt_id;
+                                console.log(getId)
+                                LoginStatus.find({rpt_id:getId},(err,docs)=>{
+                                    if(!err){
+                                    docs.find(x=>{
+                                            if(x.date==datezone){
+                                                
+                                               if(x.logout){
+                                                console.log('wait for shift')
+                                             
+                                               }
+                                               else{
+                                                addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress)
+                                                let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
+                                                let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
+                                                res.json({
+                                                    message:'login Successfully',
+                                                    token,
+                                                    refreshToken
+                                                })
+                                               }
+                                            }
 
-                             addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
+                                        })
+                                    }
+                                    else{
+                                        res.json(err)
+                                    }
+                                })
+                               
+                            }
+                            return getPersonal()
                         }
                         else{
                             res.json({
