@@ -118,6 +118,18 @@ const getAllReporting=(req,res)=>{
     })
 }
 
+const getReportingById=(req,res)=>{  
+    var id=req.params.id;  
+    Reporting.findOne({_id:id},(err,docs)=>{
+        if(!err){
+            res.json(docs);
+        }
+        else{
+            res.json(err)
+        }
+    })
+}
+
 
 const deleteReporting= (req,res)=>{
     var deleteid=req.params.id;
@@ -322,4 +334,4 @@ const updateReporting=(req,res)=>{
 
 
 
-module.exports={addReporting,getAllReporting,deleteReporting,updateReporting,validate,updatePendingAmount,updateJobstatus}
+module.exports={addReporting,getAllReporting,deleteReporting,updateReporting,validate,updatePendingAmount,updateJobstatus,getReportingById}

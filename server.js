@@ -10,7 +10,7 @@ var meeting=require('./Routes/meetingRoute');
 var ClientManagement=require('./Routes/clientManagementRoute');
 var TechnicalManagement=require('./Routes/technicalManagementRoute');
 var LoginStatus=require('./Routes/loginStatusRoute');
-
+var ApplicationRoute=require('./Routes/applicationRoute');
 const cors = require('cors');
 
 // const server=http.createServer((req,res)=>{
@@ -64,3 +64,4 @@ app.use('/',reporting);
 app.use('/',ClientManagement);
 app.use('/',TechnicalManagement);
 app.use('/',LoginStatus);
+app.use('/',ApplicationRoute);

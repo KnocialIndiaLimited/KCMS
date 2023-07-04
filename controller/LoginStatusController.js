@@ -165,12 +165,13 @@ const deleteLoginStatus= (req,res)=>{
 
 const updateLoginStatus=(req,res)=>{
     const getId=req.params.id;
-    const getDate=dateZone.datezone;
     var getcurentdate=new Date();
     var dateUTC = getcurentdate.getTime() 
     var dateIST = new Date(dateUTC);
-    dateIST.setHours(dateIST.getHours() + 5); 
-    dateIST.setMinutes(dateIST.getMinutes() + 30);
+    const getDate=moment(dateIST).format('YYYY/MM/DD');
+
+    dateIST.setHours(dateIST.getHours()); 
+    dateIST.setMinutes(dateIST.getMinutes());
     LoginStatus.findOneAndUpdate({rpt_id:getId,date:getDate},
         {
         lastActive:dateIST, 

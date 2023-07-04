@@ -20,8 +20,13 @@ var OtherWaiverController = require('../controller/otherWaiverController');
 
 var intrainingController = require('../controller/inTrainingController');
 
+var refundController = require('../controller/refundController');
+
+var refundPaymentController = require('../controller/refundPaymentController');
+
 router.post('/reporting', ReportingController.addReporting);
 router.get('/reporting', ReportingController.getAllReporting);
+router.get('/reporting/:id', ReportingController.getReportingById);
 router["delete"]('/reporting/:id', ReportingController.deleteReporting);
 router.put('/reporting/:id', ReportingController.updateReporting);
 router.post('/validate', ReportingController.validate);
@@ -46,4 +51,11 @@ router.post('/otherWaiver', OtherWaiverController.addOtherWaiver);
 router.get('/otherWaiver', OtherWaiverController.getAllOtherWaiver);
 router["delete"]('/otherWaiver/:id', OtherWaiverController.deleteOtherWaiver);
 router.post('/intraining', intrainingController.addIntraining);
+router.put('/refund/:id', refundController.updateRefund);
+router.post('/refund', refundController.addRefund);
+router.get('/refund', refundController.getAllRefund);
+router["delete"]('/refund/:id', refundController.deleteRefund);
+router.post('/refundPayment', refundPaymentController.addRefundPayment);
+router.get('/refundPayment', refundPaymentController.getAllRefundPayment);
+router["delete"]('/refundPayment/:id', refundPaymentController.deleteRefundPayment);
 module.exports = router;

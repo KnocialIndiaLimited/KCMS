@@ -18,6 +18,7 @@ var refundPaymentController =require('../controller/refundPaymentController');
 
 router.post('/reporting',ReportingController.addReporting);
 router.get('/reporting',ReportingController.getAllReporting);
+router.get('/reporting/:id',ReportingController.getReportingById);
 router.delete('/reporting/:id',ReportingController.deleteReporting);
 router.put('/reporting/:id',ReportingController.updateReporting);
 router.post('/validate',ReportingController.validate);

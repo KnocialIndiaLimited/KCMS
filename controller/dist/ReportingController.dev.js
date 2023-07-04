@@ -134,6 +134,19 @@ var getAllReporting = function getAllReporting(req, res) {
   });
 };
 
+var getReportingById = function getReportingById(req, res) {
+  var id = req.params.id;
+  Reporting.findOne({
+    _id: id
+  }, function (err, docs) {
+    if (!err) {
+      res.json(docs);
+    } else {
+      res.json(err);
+    }
+  });
+};
+
 var deleteReporting = function deleteReporting(req, res) {
   var deleteid = req.params.id;
   Reporting.findByIdAndDelete(deleteid, function (err, del) {
@@ -327,5 +340,6 @@ module.exports = {
   updateReporting: updateReporting,
   validate: validate,
   updatePendingAmount: updatePendingAmount,
-  updateJobstatus: updateJobstatus
+  updateJobstatus: updateJobstatus,
+  getReportingById: getReportingById
 };

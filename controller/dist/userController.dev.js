@@ -233,9 +233,10 @@ var login = function login(req, res) {
                 //     token,
                 //     refreshToken
                 // })
+                //&& NotLogin>TS
                 //  addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
 
-                if (loginTime < TS && NotLogin > TS) {
+                if (loginTime < TS) {
                   addLoginStatus(User.rpt_id, User.username, datezone, TimeA, ipAddress);
 
                   var _token = jwt.sign({

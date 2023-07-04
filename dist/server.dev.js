@@ -25,6 +25,8 @@ var TechnicalManagement = require('./Routes/technicalManagementRoute');
 
 var LoginStatus = require('./Routes/loginStatusRoute');
 
+var ApplicationRoute = require('./Routes/applicationRoute');
+
 var cors = require('cors'); // const server=http.createServer((req,res)=>{
 //     res.writeHead(200);
 //     res.end("hello world")
@@ -70,3 +72,4 @@ app.use('/', reporting);
 app.use('/', ClientManagement);
 app.use('/', TechnicalManagement);
 app.use('/', LoginStatus);
+app.use('/', ApplicationRoute);

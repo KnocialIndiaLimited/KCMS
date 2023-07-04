@@ -201,9 +201,9 @@ const login =(req,res)=>{
                         //     token,
                         //     refreshToken
                         // })
-
+//&& NotLogin>TS
                         //  addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
-                        if(loginTime<TS && NotLogin>TS){
+                        if(loginTime<TS){
                             addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress)
                             let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
                             let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
