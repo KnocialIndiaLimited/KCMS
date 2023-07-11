@@ -106,6 +106,7 @@ const addPanel=(req,res)=>{
         tnp_head_name:req1.tnp_head_name,
         tnp_head_contact:req1.tnp_head_contact,
         tnp_head_email:req1.tnp_head_email,
+        college_city:req1.college_city,
         status:2,
     },(docs,err)=>{
         if(!err){
