@@ -11,6 +11,7 @@ var ClientManagement=require('./Routes/clientManagementRoute');
 var TechnicalManagement=require('./Routes/technicalManagementRoute');
 var LoginStatus=require('./Routes/loginStatusRoute');
 var ApplicationRoute=require('./Routes/applicationRoute');
+var UploadFile=require('./fileUplaod');
 const cors = require('cors');
 
 // const server=http.createServer((req,res)=>{
@@ -56,6 +57,7 @@ app.listen(3000,()=>console.log("Server started at port 3000"));
 //  console.log(time)
 // },5000);
 
+app.use('/images',express.static('uploads'))
 app.use('/user',user);
 app.use('/',meeting);
 app.use('/',hrManagement);
@@ -65,3 +67,4 @@ app.use('/',ClientManagement);
 app.use('/',TechnicalManagement);
 app.use('/',LoginStatus);
 app.use('/',ApplicationRoute);
+app.use('/',UploadFile);
