@@ -1,13 +1,16 @@
 const  express =require('express');
 const router = express.Router();
 const multer=require('multer');
-
+var finalName;
 var storage=multer.diskStorage({
     destination:(req,res,cb)=>{
   cb(null,'uploads/')
     },
     filename:(req,file,cb)=>{
-        cb(null,file.originalname)
+        var time=new Date()
+        time=time.getTime()
+         finalName=time+file.originalname
+        cb(null,finalName)
     }
 })
 
@@ -23,7 +26,7 @@ router.post('/upload',(req,res)=>{
         }
         let uploadedFiles=[]
         for(let item of req.files){
-            uploadedFiles.push({filename:item.originalname})
+            uploadedFiles.push({filename:finalName})
         }
 
         res.json({progress:100,files:uploadedFiles})

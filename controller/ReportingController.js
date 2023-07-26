@@ -245,12 +245,7 @@ const updateReporting=(req,res)=>{
                         epfo_number:req.body.epfo_number,
                         uan_number:req.body.uan_number,
                         hr_remarks:req.body.hr_remarks,
-                        document_name:req.body.document_name,
                         file:req.body.file,
-                        file_name:req.body.file_name,
-                        file_status:req.body.file_status,
-                        deadline:req.body.deadline,
-                        doc_hr_remarks:req.body.doc_hr_remarks,
                         created_by:req.body.created_by,
                         created_at:timeZone.datezone
                     },
