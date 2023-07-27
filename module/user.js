@@ -5,6 +5,7 @@ var user = mongoose.model("user",{
     username:{type:String,min:5,max:10},
     email:{type:String},
     phone_no:{type:Number},
+    profile:{type:String},
     password:{type:String,min:5},
     role:{type:Array},
     shift:{type:Array},

@@ -86,6 +86,7 @@ const register =(req,res)=>{
                     _id:seqId,
                     rpt_id:req.body.rpt_id,
                     username:req.body.user_name,
+                    profile:req.body.profile,
                     email:req.body.email,
                     password:hasspass,
                     phone_no:req.body.phone_no,
@@ -140,9 +141,7 @@ const login =(req,res)=>{
     var ipAddress=req.body.ipAddress;
     var lat =req.body.lat;
     var lng=req.body.lng;
-   console.log(lat)
-   console.log(lng);
-   console.log(ipAddress)
+  
     if(width>=1000 && height>=250){
   user.findOne({email}).then(User=>{
         // console.log(User.shift[0].shift_start)
@@ -155,7 +154,7 @@ const login =(req,res)=>{
                   }
                   if(result){
                     if(User.role=='admin' || User.role=='nadmin'){
-                        let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
+                        let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id,profile:User.profile},tokenPrivacy,{expiresIn:'9h'})
                         let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
                         res.json({
                             message:'login Successfully',
