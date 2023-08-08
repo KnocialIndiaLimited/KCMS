@@ -105,7 +105,7 @@ const remark=req.body.status;
         status:req.body.status,
         remarks:req.body.remarks,
         updated_by:req.body.created_by,
-        updated_at:timezone.datezone
+        updated_at:new Date()
     },(err,docs)=>{
         if(!err){
             res.json(docs);

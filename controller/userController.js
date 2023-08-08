@@ -141,7 +141,8 @@ const login =(req,res)=>{
     var ipAddress=req.body.ipAddress;
     var lat =req.body.lat;
     var lng=req.body.lng;
-  
+
+
     if(width>=1000 && height>=250){
   user.findOne({email}).then(User=>{
         // console.log(User.shift[0].shift_start)
@@ -163,15 +164,13 @@ const login =(req,res)=>{
                         })
                     }
                     else{
-
                         var shift=User.shift[0].shift_start;
                          shift=shift.split(':');
                         const hours=shift[0];
                         const minutes=shift[1];
                         const TotalSeconds=(hours*3600)+(minutes*60);
-                        const loginTime=TotalSeconds;
+                        const loginTime=TotalSeconds-(30*60);
                         const NotLogin=TotalSeconds+(9*3600);
-                
                         const currentTime=new Date();
                         var dateUTC = currentTime.getTime() 
                         var dateIST = new Date(dateUTC);
@@ -190,7 +189,7 @@ const login =(req,res)=>{
                 //   var min=total%60;
                 //   var hor=Math.floor(total/60);
                 //   console.log(min,hor)
-                
+             
                         console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
                         // console.log('LoginTime',loginTime,' ,NotLogin:-',NotLogin,' curent time',TS)
                         // let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
@@ -201,8 +200,9 @@ const login =(req,res)=>{
                         //     refreshToken
                         // })
 //loginTime<TS  && NotLogin>TS
+
                         //  addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
-                        if(TS){
+                        if(loginTime<TS  && NotLogin>TS){
                             addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress)
                             let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
                             let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
@@ -342,6 +342,13 @@ const updateUser =(req,res)=>{
             phone_no:req.body.phone_no,
             role:req.body.roles,
             status:req.body.status,
+             role:req.body.roles,
+                    status:req.body.status,
+                    shift:req.body.shift,
+                    department:req.body.department,
+                    designation:req.body.designation,
+                    sub_department:req.body.sub_department,
+                    office_location:req.body.office_location,
             // password:req.body.password,
           },(docs,err)=>{
             if(!err){

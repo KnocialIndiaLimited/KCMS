@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express =require('express');
 const bodyParser = require('body-parser');
 const { Mongoose} = require('./db');
@@ -13,11 +14,15 @@ var LoginStatus=require('./Routes/loginStatusRoute');
 var ApplicationRoute=require('./Routes/applicationRoute');
 var UploadFile=require('./fileUplaod');
 const cors = require('cors');
+const { datezone, date } = require('./dateZone');
+
+process.env.TZ = 'Asia/Calcutta';
 
 // const server=http.createServer((req,res)=>{
 //     res.writeHead(200);
 //     res.end("hello world")
 // });
+
 
 var app =express();
 app.use(bodyParser.json());
@@ -25,9 +30,9 @@ app.use(bodyParser.json());
 app.use(cors({origin:'*'}));
 
 
-// const PORT =process.env.PORT || 3000;
+const PORT =process.env.PORT || 3000;
 // app.listen(PORT,()=>console.log("server is running on 3000"))
-app.listen(3000,()=>console.log("Server started at port 3000"));
+app.listen(PORT,()=>console.log("Server started at port "+PORT ));
 
 // var date=new Date();
 // var hours1 = date.getHours();

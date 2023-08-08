@@ -6,7 +6,9 @@ const convert = require('../Converttime');
 
 var data1;
 const addLoginStatus=(rpt_id,name,date,loginTime,ipAddress)=>{
+
 LoginStatus.findOne({rpt_id:rpt_id,date:dateZone.datezone}).then(User=>{
+
         // console.log(User.shift[0].shift_start)
         if(User){
         // getData('next shift')
@@ -32,7 +34,7 @@ LoginStatus.findOne({rpt_id:rpt_id,date:dateZone.datezone}).then(User=>{
                         date:date,
                         loginTime:loginTime,
                         ipAddress:ipAddress,
-                        created_at:Date.now()
+                        created_at:dateZone.istDate
                     });
                     loginstatus.save((err,docs)=>{
                         if(!err){
@@ -48,6 +50,8 @@ LoginStatus.findOne({rpt_id:rpt_id,date:dateZone.datezone}).then(User=>{
     })
 
 }
+
+
 
 const getAllLoginStatus=(req,res)=>{
     LoginStatus.find((err,docs)=>{
@@ -172,6 +176,8 @@ const updateLoginStatus=(req,res)=>{
 
     dateIST.setHours(dateIST.getHours()); 
     dateIST.setMinutes(dateIST.getMinutes());
+
+
     LoginStatus.findOneAndUpdate({rpt_id:getId,date:getDate},
         {
         lastActive:dateIST, 
