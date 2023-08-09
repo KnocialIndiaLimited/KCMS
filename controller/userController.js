@@ -171,15 +171,17 @@ const login =(req,res)=>{
                         const TotalSeconds=(hours*3600)+(minutes*60);
                         const loginTime=TotalSeconds-(30*60);
                         const NotLogin=TotalSeconds+(10*3600);
-                        const currentTime=new Date();
+                        var currentTime=new Date();
                         // var dateUTC = currentTime.getTime() 
                         // var dateIST = new Date(dateUTC);
                         // dateIST.setHours(dateIST.getHours()); 
                         // dateIST.setMinutes(dateIST.getMinutes());
-                        const TimeA=(h+5)+':'+(m+30)+':'+s
                         const h=currentTime.getHours();
                         const m=currentTime.getMinutes();
                         const s=currentTime.getSeconds();
+                        var TimeA=currentTime.setHours(currentTime.getHours()+5)
+                        TimeA=currentTime.setMinutes(currentTime.getMinutes()+30)
+                    
                         var TS=((h+5)*3600)+((m+30)*60);
                       
                         TS=clockCheck(TS);
@@ -204,7 +206,7 @@ const login =(req,res)=>{
 
                         //  addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
                         if(loginTime<TS  && NotLogin>TS){
-                            addLoginStatus(User.rpt_id,User.username,datezone.datezone,TimeA,ipAddress)
+                            addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress)
                             let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
                             let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
                             res.json({
