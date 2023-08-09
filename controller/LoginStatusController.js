@@ -34,7 +34,7 @@ LoginStatus.findOne({rpt_id:rpt_id,date:dateZone.datezone}).then(User=>{
                         date:date,
                         loginTime:loginTime,
                         ipAddress:ipAddress,
-                        created_at:dateZone.istDate
+                        created_at:dateZone.datezone
                     });
                     loginstatus.save((err,docs)=>{
                         if(!err){
@@ -177,7 +177,7 @@ const updateLoginStatus=(req,res)=>{
     dateIST.setHours(dateIST.getHours()); 
     dateIST.setMinutes(dateIST.getMinutes());
 
-
+console.log(req.body.totalActive)
     LoginStatus.findOneAndUpdate({rpt_id:getId,date:getDate},
         {
         lastActive:dateIST, 
