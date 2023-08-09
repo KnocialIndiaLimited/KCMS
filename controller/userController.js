@@ -179,8 +179,7 @@ const login =(req,res)=>{
                         const h=currentTime.getHours();
                         const m=currentTime.getMinutes();
                         const s=currentTime.getSeconds();
-                        var TimeA=currentTime.setHours(currentTime.getHours()+5)
-                        TimeA=currentTime.setMinutes(currentTime.getMinutes()+30)
+                        var TimeA=0
                     
                         var TS=((h+5)*3600)+((m+30)*60);
                       

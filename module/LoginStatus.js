@@ -16,8 +16,8 @@ const LoginStatus = mongoose.model("loginStatus",{
     ipAddress:{type:String},
     ActivityData:{type:Array},
     created_by:{type:String},
-    created_at:{type:Date},
+    created_at:{type:String},
     updated_by:{type:String},
-    updated_at:{type:Date}
+    updated_at:{type:String}
 });
 module.exports={LoginStatus}
