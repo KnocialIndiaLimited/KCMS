@@ -173,14 +173,15 @@ const updateLoginStatus=(req,res)=>{
     var dateUTC = getcurentdate.getTime() 
     var dateIST = new Date(dateUTC);
     const getDate=moment(dateIST).format('YYYY/MM/DD');
+     
 
-    dateIST.setHours(dateIST.getHours()); 
-    dateIST.setMinutes(dateIST.getMinutes());
+  var datestatus=getcurentdate.setHours(getcurentdate.getHours()+5)
+  getcurentdate.setMinutes(getcurentdate.getMinutes()+30)
 
 console.log(req.body.totalActive)
     LoginStatus.findOneAndUpdate({rpt_id:getId,date:getDate},
         {
-        lastActive:dateZone.datezone, 
+        lastActive:datestatus, 
         totalActive:req.body.totalActive,
         logout:req.body.logout,
         break1DateTime:req.body.break1DateTime,
