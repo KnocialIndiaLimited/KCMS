@@ -172,18 +172,19 @@ const login =(req,res)=>{
                         const loginTime=TotalSeconds-(30*60);
                         const NotLogin=TotalSeconds+(10*3600);
                         const currentTime=new Date();
-                        var dateUTC = currentTime.getTime() 
-                        var dateIST = new Date(dateUTC);
-                        dateIST.setHours(dateIST.getHours()); 
-                        dateIST.setMinutes(dateIST.getMinutes());
-                        const TimeA=datezone.datezone
+                        // var dateUTC = currentTime.getTime() 
+                        // var dateIST = new Date(dateUTC);
+                        // dateIST.setHours(dateIST.getHours()); 
+                        // dateIST.setMinutes(dateIST.getMinutes());
+                        const TimeA=(h+5)+':'+(m+30)+':'+s
                         const h=currentTime.getHours();
                         const m=currentTime.getMinutes();
-                        var TS=((h)*3600)+((m)*60);
+                        const s=currentTime.getSeconds();
+                        var TS=((h+5)*3600)+((m+30)*60);
+                      
                         TS=clockCheck(TS);
                 //    var getTime=TS/60;
-                //    getTime=getTime%60;
-                //    console.log('minutes',getTime);
+                //    getTime=getTime%60;                //    console.log('minutes',getTime);
                   
                 //   var total=loginTime/60
                 //   var min=total%60;

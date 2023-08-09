@@ -180,7 +180,7 @@ const updateLoginStatus=(req,res)=>{
 console.log(req.body.totalActive)
     LoginStatus.findOneAndUpdate({rpt_id:getId,date:getDate},
         {
-        lastActive:dateIST, 
+        lastActive:dateZone.datezone, 
         totalActive:req.body.totalActive,
         logout:req.body.logout,
         break1DateTime:req.body.break1DateTime,
