@@ -15,6 +15,7 @@ var ApplicationRoute=require('./Routes/applicationRoute');
 var UploadFile=require('./fileUplaod');
 const cors = require('cors');
 const { datezone } = require('./dateZone');
+const { Customdate } = require('./date');
 
 process.env.TZ = 'Asia/Calcutta';
 
@@ -32,6 +33,8 @@ const PORT =process.env.PORT || 3000;
 // app.listen(PORT,()=>console.log("server is running on 3000"))
 app.listen(PORT,()=>console.log("Server started at port "+PORT ));
 
+
+console.log(Customdate)
 // var date=new Date();
 // var hours1 = date.getHours();
 // // current minutes
