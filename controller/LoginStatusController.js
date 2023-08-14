@@ -168,14 +168,10 @@ const deleteLoginStatus= (req,res)=>{
 
 const updateLoginStatus=(req,res)=>{
     const getId=req.params.id;
-    
-     
-
-
 
     LoginStatus.findOneAndUpdate({rpt_id:getId,date:Customdate},
         {
-        lastActive:dateZone.datezone, 
+        lastActive:new Date(), 
         totalActive:req.body.totalActive,
         logout:req.body.logout,
         break1DateTime:req.body.break1DateTime,

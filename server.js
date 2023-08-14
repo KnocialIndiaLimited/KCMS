@@ -33,9 +33,6 @@ const PORT =process.env.PORT || 3000;
 // app.listen(PORT,()=>console.log("server is running on 3000"))
 app.listen(PORT,()=>console.log("Server started at port "+PORT ));
 
-
-console.log(Customdate)
-console.log(datezone)
 // var date=new Date();
 // var hours1 = date.getHours();
 // // current minutes
