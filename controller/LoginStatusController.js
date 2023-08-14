@@ -33,7 +33,7 @@ LoginStatus.findOne({rpt_id:rpt_id,date:Customdate}).then(User=>{
                         date:date,
                         loginTime:loginTime,
                         ipAddress:ipAddress,
-                        created_at:dateZone.datezone
+                        created_at:new Date()
                     });
                     loginstatus.save((err,docs)=>{
                         if(!err){
@@ -178,6 +178,7 @@ const updateLoginStatus=(req,res)=>{
         break2DateTime:req.body.break2DateTime,
         break3DateTime:req.body.break3DateTime,
         totalIdle:req.body.totalIdle,
+        updated_at:new Date()
     },
     (err,docs)=>{
         if(!err){
