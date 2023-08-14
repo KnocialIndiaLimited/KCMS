@@ -1,8 +1,17 @@
 const moment = require("moment/moment");
 
- var Customdate=new Date()
+ var newDate=new Date()
  
- Customdate=moment(Customdate).format("YYYY/MM/DD")
+ let date = ("0" + newDate.getDate()).slice(-2);
+
+ // current month
+ let month = ("0" + (newDate.getMonth() + 1)).slice(-2);
+ 
+ // current year
+ let year = newDate.getFullYear();
+ 
+
+ Customdate=year+"/"+month+"/"+date
 
 
 
