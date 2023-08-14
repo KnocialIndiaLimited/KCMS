@@ -10,7 +10,7 @@
  let year = newDate.getFullYear();
  
 
- Customdate=year+"/"+month+"/"+date
+ Customdate=year+"/"+month+"/"+date+1
 
 
 
