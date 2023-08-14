@@ -170,7 +170,7 @@ const login =(req,res)=>{
                         const minutes=shift[1];
                         const TotalSeconds=(hours*3600)+(minutes*60);
                         const loginTime=TotalSeconds-(30*60);
-                        const NotLogin=TotalSeconds+(10*3600);
+                        const NotLogin=TotalSeconds+(9*3600);
                         var currentTime=new Date();
                         // var dateUTC = currentTime.getTime() 
                         // var dateIST = new Date(dateUTC);
@@ -206,7 +206,7 @@ const login =(req,res)=>{
                         //  addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
                         if(loginTime<TS  && NotLogin>TS){
                             addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress)
-                            let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id},tokenPrivacy,{expiresIn:'9h'})
+                            let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id,shift:User.shift},tokenPrivacy,{expiresIn:'9h'})
                             let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
                             res.json({
                                 message:'login Successfully',
