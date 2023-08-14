@@ -178,8 +178,8 @@ const login =(req,res)=>{
                         // var dateIST = new Date(dateUTC);
                         // dateIST.setHours(dateIST.getHours()); 
                         // dateIST.setMinutes(dateIST.getMinutes());
-                        const h=currentTime.setHours(currentTime.getHours()+5);
-                        const m=currentTime.setMinutes(currentTime.getMinutes()+30);
+                        const h=currentTime.getHours();
+                        const m=currentTime.getMinutes();
                         const s=currentTime.getSeconds();
                         var TimeA=h+":"+m+":"+s
                     

@@ -6,11 +6,6 @@
 
 
  var date=new Date()
- 
-
- date.setHours(date.getHours()+5)
- date.setMinutes(date.getMinutes()+30)
-
  var datezone=date
 // function convertUtcToIst(utcDate) {
 //     const options = {
