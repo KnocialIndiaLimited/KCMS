@@ -14,7 +14,6 @@ var LoginStatus=require('./Routes/loginStatusRoute');
 var ApplicationRoute=require('./Routes/applicationRoute');
 var UploadFile=require('./fileUplaod');
 const cors = require('cors');
-const { datezone } = require('./dateZone');
 const { Customdate } = require('./date');
 
 process.env.TZ = 'Asia/Calcutta';
