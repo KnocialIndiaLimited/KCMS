@@ -7,9 +7,7 @@ const { Customdate } = require('../date');
 
 var data1;
 const addLoginStatus=(rpt_id,name,date,loginTime,ipAddress)=>{
-
 LoginStatus.findOne({rpt_id:rpt_id,date:Customdate}).then(User=>{
-
         // console.log(User.shift[0].shift_start)
         if(User){
         // getData('next shift')
@@ -170,16 +168,14 @@ const deleteLoginStatus= (req,res)=>{
 
 const updateLoginStatus=(req,res)=>{
     const getId=req.params.id;
-    var getcurentdate=new Date();
-    const getDate=moment(getcurentdate).format('YYYY/MM/DD');
-   
-
-  var datestatus=0
+    
+     
 
 
-    LoginStatus.findOneAndUpdate({rpt_id:getId,date:getDate},
+
+    LoginStatus.findOneAndUpdate({rpt_id:getId,date:Customdate},
         {
-        lastActive:datestatus, 
+        lastActive:new Date(), 
         totalActive:req.body.totalActive,
         logout:req.body.logout,
         break1DateTime:req.body.break1DateTime,

@@ -155,6 +155,7 @@ const login =(req,res)=>{
                   console.log(err)
                   }
                   if(result){
+
                     if(User.role=='admin' || User.role=='nadmin'){
                         let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id,profile:User.profile},tokenPrivacy,{expiresIn:'9h'})
                         let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
@@ -180,7 +181,7 @@ const login =(req,res)=>{
                         const h=currentTime.getHours();
                         const m=currentTime.getMinutes();
                         const s=currentTime.getSeconds();
-                        var TimeA=0
+                        var TimeA=h+":"+m+":"+s
                     
                         var TS=((h)*3600)+((m)*60);
                       
