@@ -9,8 +9,7 @@ const moment = require("moment/moment");
 
 
  var datezone=new Date()
- datezone.setHours(datezone.getHours()+5)
- datezone.setMinutes(datezone.getMinutes()+30)
+ 
 
 // function convertUtcToIst(utcDate) {
 //     const options = {

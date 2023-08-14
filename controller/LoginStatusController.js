@@ -3,11 +3,12 @@ const counterSchema=require('../module/counter');
 const dateZone=require('../dateZone');
 const moment = require('moment');
 const convert = require('../Converttime');
+const { Customdate } = require('../date');
 
 var data1;
 const addLoginStatus=(rpt_id,name,date,loginTime,ipAddress)=>{
 
-LoginStatus.findOne({rpt_id:rpt_id,date:dateZone.datezone}).then(User=>{
+LoginStatus.findOne({rpt_id:rpt_id,date:Customdate}).then(User=>{
 
         // console.log(User.shift[0].shift_start)
         if(User){
@@ -170,18 +171,12 @@ const deleteLoginStatus= (req,res)=>{
 const updateLoginStatus=(req,res)=>{
     const getId=req.params.id;
     var getcurentdate=new Date();
-    var dateUTC = getcurentdate.getTime() 
-    var dateIST = new Date(dateUTC);
-    const getDate=moment(dateIST).format('YYYY/MM/DD');
-     
-
-    const h =getcurentdate.getHours()
-    const m=getcurentdate.getMinutes()
-    const s=getcurentdate.getMinutes()
+    const getDate=moment(getcurentdate).format('YYYY/MM/DD');
+   
 
   var datestatus=0
 
-console.log(req.body.totalActive)
+
     LoginStatus.findOneAndUpdate({rpt_id:getId,date:getDate},
         {
         lastActive:datestatus, 

@@ -14,7 +14,7 @@ var LoginStatus=require('./Routes/loginStatusRoute');
 var ApplicationRoute=require('./Routes/applicationRoute');
 var UploadFile=require('./fileUplaod');
 const cors = require('cors');
-const { datezone, date } = require('./dateZone');
+const { datezone } = require('./dateZone');
 
 process.env.TZ = 'Asia/Calcutta';
 
@@ -34,7 +34,6 @@ app.listen(PORT,()=>console.log("Server started at port "+PORT ));
 
 // var date=new Date();
 // var hours1 = date.getHours();
-    
 // // current minutes
 // var minutes1 = date.getMinutes();
 

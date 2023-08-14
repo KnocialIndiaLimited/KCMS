@@ -11,6 +11,7 @@ const { datezone } = require('../dateZone');
 var {LoginStatus}=require('../module/LoginStatus');
 const convert = require('../Converttime');
 const clockCheck = require('../clockCheck');
+const { Customdate } = require('../date');
 // const { user } = require('../auth');
 // const nodemailer= require('nodemailer');
 // const randomstring =require('randomstring');
@@ -205,7 +206,7 @@ const login =(req,res)=>{
 
                         //  addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
                         if(TS){
-                            addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress)
+                            addLoginStatus(User.rpt_id,User.username,Customdate,TimeA,ipAddress)
                             let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id,shift:User.shift},tokenPrivacy,{expiresIn:'9h'})
                             let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
                             res.json({
