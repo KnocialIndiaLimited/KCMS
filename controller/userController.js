@@ -178,12 +178,12 @@ const login =(req,res)=>{
                         // var dateIST = new Date(dateUTC);
                         // dateIST.setHours(dateIST.getHours()); 
                         // dateIST.setMinutes(dateIST.getMinutes());
-                        const h=currentTime.getHours();
-                        const m=currentTime.getMinutes();
+                        const h=currentTime.setHours(currentTime.getHours()+5);
+                        const m=currentTime.setMinutes(currentTime.getMinutes()+30);
                         const s=currentTime.getSeconds();
                         var TimeA=h+":"+m+":"+s
                     
-                        var TS=((h)*3600)+((m)*60);
+                        var TS=((h)*3600)+((m)*60)+s;
                       
                         TS=clockCheck(TS);
                 //    var getTime=TS/60;

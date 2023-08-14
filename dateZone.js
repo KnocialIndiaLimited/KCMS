@@ -5,12 +5,13 @@
 //  })
 
 
- var datezone=new Date()
+ var date=new Date()
  
 
- datezone.setHours(datezone.getHours()+5)
- datezone.setMinutes(datezone.getMinutes()+30)
+ date.setHours(date.getHours()+5)
+ date.setMinutes(date.getMinutes()+30)
 
+ var datezone=date
 // function convertUtcToIst(utcDate) {
 //     const options = {
 //       timeZone: 'Asia/Kolkata',

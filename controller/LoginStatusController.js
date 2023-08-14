@@ -175,7 +175,7 @@ const updateLoginStatus=(req,res)=>{
 
     LoginStatus.findOneAndUpdate({rpt_id:getId,date:Customdate},
         {
-        lastActive:new Date(), 
+        lastActive:dateZone.datezone, 
         totalActive:req.body.totalActive,
         logout:req.body.logout,
         break1DateTime:req.body.break1DateTime,
