@@ -181,7 +181,7 @@ const login =(req,res)=>{
                         const s=currentTime.getSeconds();
                         var TimeA=0
                     
-                        var TS=((h+5)*3600)+((m+30)*60);
+                        var TS=((h)*3600)+((m)*60);
                       
                         TS=clockCheck(TS);
                 //    var getTime=TS/60;
@@ -204,7 +204,7 @@ const login =(req,res)=>{
 //loginTime<TS  && NotLogin>TS
 
                         //  addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress);
-                        if(loginTime<TS  && NotLogin>TS){
+                        if(TS){
                             addLoginStatus(User.rpt_id,User.username,datezone,TimeA,ipAddress)
                             let token = jwt.sign({email:User.email,username:User.username,role:User.role,id:User._id,rpt_id:User.rpt_id,shift:User.shift},tokenPrivacy,{expiresIn:'9h'})
                             let refreshToken=jwt.sign({email:User.email},'RefreshTokenverySecretValue',{expiresIn:'60s'})
